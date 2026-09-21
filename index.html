@@ -1,7 +1,679 @@
-<html>
-     <head>
-           <title>MyPage</>
-     <head/>
-   <body>
-       <Hello World>
-<body/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asmith Reddy Mamilla — Product Manager</title>
+<meta name="description" content="Product Manager with a design and engineering background. Led 0-to-1 products from discovery through launch. Based in New York.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue: #2563EB;
+    --blue-light: #EFF6FF;
+    --blue-mid: #DBEAFE;
+    --dark: #1A2332;
+    --gray-9: #111827;
+    --gray-7: #374151;
+    --gray-5: #6B7280;
+    --gray-3: #D1D5DB;
+    --gray-1: #F9FAFB;
+    --white: #FFFFFF;
+    --radius: 10px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-lg: 0 4px 24px rgba(0,0,0,0.10);
+  }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--gray-9); background: var(--white); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gray-3); }
+  .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-weight: 700; font-size: 15px; color: var(--dark); text-decoration: none; letter-spacing: -0.3px; }
+  .nav-logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: var(--gray-7); text-decoration: none; transition: color .2s; }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta { background: var(--blue); color: #fff !important; padding: 8px 18px; border-radius: 6px; font-weight: 600 !important; transition: background .2s !important; }
+  .nav-cta:hover { background: #1d4ed8 !important; }
+
+  /* HERO */
+  .hero { padding: 140px 32px 100px; max-width: 1100px; margin: 0 auto; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--blue-light); color: var(--blue); font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 20px; margin-bottom: 28px; letter-spacing: 0.3px; }
+  .hero-tag::before { content: ''; width: 7px; height: 7px; background: var(--blue); border-radius: 50%; }
+  h1 { font-size: clamp(38px, 6vw, 62px); font-weight: 800; line-height: 1.1; color: var(--dark); letter-spacing: -1.5px; margin-bottom: 24px; }
+  h1 em { font-style: normal; color: var(--blue); }
+  .hero-sub { font-size: 18px; color: var(--gray-7); max-width: 640px; line-height: 1.7; margin-bottom: 40px; font-weight: 400; }
+  .hero-metrics { display: flex; gap: 40px; margin-bottom: 44px; flex-wrap: wrap; }
+  .metric { display: flex; flex-direction: column; }
+  .metric-num { font-size: 32px; font-weight: 800; color: var(--dark); letter-spacing: -1px; line-height: 1; }
+  .metric-num span { color: var(--blue); }
+  .metric-label { font-size: 12px; color: var(--gray-5); font-weight: 500; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .metric-divider { width: 1px; background: var(--gray-3); margin: 4px 0; align-self: stretch; }
+  .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--blue); color: #fff; padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 15px; text-decoration: none; transition: background .2s, transform .1s; display: inline-block; }
+  .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); }
+  .btn-secondary { border: 1.5px solid var(--gray-3); color: var(--gray-7); padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 15px; text-decoration: none; transition: border-color .2s, color .2s; display: inline-block; }
+  .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+  .hero-contact { font-size: 13px; color: var(--gray-5); margin-top: 20px; }
+  .hero-contact a { color: var(--blue); text-decoration: none; font-weight: 500; }
+
+  /* SECTION HEADERS */
+  section { padding: 96px 32px; max-width: 1100px; margin: 0 auto; }
+  section.full-bleed { max-width: none; padding-left: 0; padding-right: 0; }
+  .section-label { font-size: 12px; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+  .section-title { font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: var(--dark); letter-spacing: -0.8px; line-height: 1.15; margin-bottom: 16px; }
+  .section-sub { font-size: 17px; color: var(--gray-5); max-width: 600px; line-height: 1.6; margin-bottom: 56px; }
+
+  /* CASE STUDIES */
+  .case-study { background: var(--gray-1); border: 1px solid var(--gray-3); border-radius: var(--radius); margin-bottom: 24px; overflow: hidden; }
+  .cs-header { padding: 40px 48px 32px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; cursor: pointer; }
+  .cs-tag-row { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .cs-tag { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .tag-blue { background: var(--blue-mid); color: var(--blue); }
+  .tag-dark { background: #E5E7EB; color: var(--gray-7); }
+  .tag-green { background: #D1FAE5; color: #065F46; }
+  .tag-amber { background: #FEF3C7; color: #92400E; }
+  .cs-num { font-size: 11px; font-weight: 700; color: var(--gray-5); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .cs-title { font-size: 22px; font-weight: 700; color: var(--dark); letter-spacing: -0.4px; line-height: 1.25; margin-bottom: 10px; }
+  .cs-desc { font-size: 15px; color: var(--gray-7); line-height: 1.6; max-width: 640px; }
+  .cs-outcomes { display: flex; gap: 28px; margin-top: 20px; flex-wrap: wrap; }
+  .cs-out { display: flex; flex-direction: column; }
+  .cs-out-num { font-size: 22px; font-weight: 800; color: var(--dark); letter-spacing: -0.5px; line-height: 1; }
+  .cs-out-label { font-size: 11px; color: var(--gray-5); font-weight: 500; margin-top: 3px; }
+  .cs-expand-btn { background: var(--white); border: 1.5px solid var(--gray-3); color: var(--gray-7); padding: 10px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all .2s; align-self: flex-start; }
+  .cs-expand-btn:hover { border-color: var(--blue); color: var(--blue); }
+  .cs-body { display: none; padding: 0 48px 48px; border-top: 1px solid var(--gray-3); }
+  .cs-body.open { display: block; }
+  .cs-body-top { padding-top: 36px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-bottom: 40px; }
+  .cs-meta-card { background: var(--white); border: 1px solid var(--gray-3); border-radius: 8px; padding: 20px; }
+  .cs-meta-label { font-size: 11px; font-weight: 700; color: var(--gray-5); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+  .cs-meta-value { font-size: 14px; color: var(--dark); font-weight: 500; line-height: 1.5; }
+  .cs-section { margin-bottom: 36px; }
+  .cs-section-title { font-size: 13px; font-weight: 700; color: var(--dark); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--blue); display: inline-block; }
+  .cs-section p { font-size: 15px; color: var(--gray-7); line-height: 1.75; margin-bottom: 14px; }
+  .cs-section p:last-child { margin-bottom: 0; }
+  .decision-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .decision-list li { display: flex; gap: 14px; align-items: flex-start; font-size: 15px; color: var(--gray-7); line-height: 1.65; }
+  .decision-list li::before { content: '→'; color: var(--blue); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .outcome-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; }
+  .outcome-card { background: var(--white); border: 1px solid var(--gray-3); border-radius: 8px; padding: 20px; text-align: center; }
+  .outcome-card .num { font-size: 28px; font-weight: 800; color: var(--blue); letter-spacing: -0.5px; line-height: 1; }
+  .outcome-card .lbl { font-size: 12px; color: var(--gray-5); font-weight: 500; margin-top: 6px; line-height: 1.4; }
+  .quote-block { background: var(--blue-light); border-left: 3px solid var(--blue); border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 24px 0; }
+  .quote-block p { font-size: 15px; color: var(--dark); font-style: italic; line-height: 1.7; }
+  .quote-block .attr { font-size: 12px; color: var(--gray-5); font-style: normal; font-weight: 600; margin-top: 8px; }
+
+  /* HOW I WORK */
+  .how-i-work { display: flex; gap: 0; margin-bottom: 48px; border: 1px solid var(--gray-3); border-radius: var(--radius); overflow: hidden; }
+  .hiw-step { flex: 1; padding: 20px 18px; background: var(--white); border-right: 1px solid var(--gray-3); text-align: center; }
+  .hiw-step:last-child { border-right: none; }
+  .hiw-step-label { font-size: 11px; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+  .hiw-step-desc { font-size: 12px; color: var(--gray-5); line-height: 1.5; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .about-text h2 { font-size: 34px; font-weight: 800; color: var(--dark); letter-spacing: -0.8px; line-height: 1.2; margin-bottom: 20px; }
+  .about-text p { font-size: 16px; color: var(--gray-7); line-height: 1.75; margin-bottom: 18px; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-text strong { color: var(--dark); }
+  .about-side { display: flex; flex-direction: column; gap: 20px; }
+  .about-card { background: var(--gray-1); border: 1px solid var(--gray-3); border-radius: var(--radius); padding: 24px; }
+  .about-card h4 { font-size: 13px; font-weight: 700; color: var(--dark); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; }
+  .about-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .about-card ul li { font-size: 14px; color: var(--gray-7); display: flex; align-items: center; gap: 8px; }
+  .about-card ul li::before { content: ''; width: 5px; height: 5px; background: var(--blue); border-radius: 50%; flex-shrink: 0; }
+
+  /* SKILLS */
+  .skills-bg { background: var(--gray-1); border-top: 1px solid var(--gray-3); border-bottom: 1px solid var(--gray-3); }
+  .skills-inner { max-width: 1100px; margin: 0 auto; padding: 96px 32px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+  .skill-card { background: var(--white); border: 1px solid var(--gray-3); border-radius: var(--radius); padding: 28px; }
+  .skill-card h3 { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .skill-icon { width: 32px; height: 32px; background: var(--blue-light); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .skill-tag { font-size: 12px; font-weight: 500; color: var(--gray-7); background: var(--gray-1); border: 1px solid var(--gray-3); padding: 4px 10px; border-radius: 4px; }
+
+  /* CONTACT */
+  .contact-box { background: var(--dark); border-radius: 16px; padding: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .contact-left h2 { font-size: 36px; font-weight: 800; color: #fff; letter-spacing: -0.8px; line-height: 1.2; margin-bottom: 16px; }
+  .contact-left p { font-size: 16px; color: #9CA3AF; line-height: 1.7; margin-bottom: 32px; }
+  .contact-items { display: flex; flex-direction: column; gap: 14px; }
+  .contact-item { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #D1D5DB; font-size: 14px; font-weight: 500; transition: color .2s; }
+  .contact-item:hover { color: var(--blue); }
+  .contact-item-icon { width: 36px; height: 36px; background: rgba(255,255,255,0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .contact-right { display: flex; flex-direction: column; gap: 14px; }
+  .contact-right input, .contact-right textarea { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 14px 18px; font-size: 14px; color: #fff; font-family: 'Inter', sans-serif; outline: none; transition: border-color .2s; width: 100%; }
+  .contact-right input::placeholder, .contact-right textarea::placeholder { color: rgba(255,255,255,0.35); }
+  .contact-right input:focus, .contact-right textarea:focus { border-color: var(--blue); }
+  .contact-right textarea { min-height: 100px; resize: vertical; }
+  .contact-right button { background: var(--blue); color: #fff; border: none; padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: background .2s; }
+  .contact-right button:hover { background: #1d4ed8; }
+
+  /* FOOTER */
+  footer { padding: 32px; text-align: center; font-size: 13px; color: var(--gray-5); border-top: 1px solid var(--gray-3); }
+
+  /* DIVIDER */
+  .divider { width: 100%; height: 1px; background: var(--gray-3); }
+
+  /* RESPONSIVE — tablet */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-inner { padding: 0 20px; }
+    .hero { padding: 100px 20px 60px; }
+    .hero-metrics { gap: 20px; flex-wrap: wrap; }
+    .metric-divider { display: none; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+    .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+    section { padding: 56px 20px; }
+    .section-sub { margin-bottom: 36px; }
+    .cs-header { padding: 24px 20px 20px; grid-template-columns: 1fr; gap: 16px; }
+    .cs-expand-btn { width: 100%; text-align: center; }
+    .cs-body { padding: 0 20px 28px; }
+    .cs-body-top { grid-template-columns: 1fr; gap: 12px; padding-top: 24px; margin-bottom: 28px; }
+    .cs-outcomes { gap: 16px; }
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .about-text h2 { font-size: 26px; }
+    .contact-box { grid-template-columns: 1fr; padding: 32px 20px; gap: 28px; }
+    .contact-left h2 { font-size: 26px; }
+    .outcome-grid { grid-template-columns: 1fr 1fr; }
+    .skills-inner { padding: 56px 20px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    footer { padding: 24px 20px; }
+    .how-i-work { flex-direction: column; }
+    .hiw-step { border-right: none; border-bottom: 1px solid var(--gray-3); }
+    .hiw-step:last-child { border-bottom: none; }
+  }
+
+  /* RESPONSIVE — mobile */
+  @media (max-width: 480px) {
+    h1 { font-size: 32px; letter-spacing: -0.8px; }
+    .hero-sub { font-size: 16px; }
+    .hero-metrics { gap: 16px; }
+    .metric-num { font-size: 26px; }
+    .section-title { font-size: 24px; }
+    .cs-title { font-size: 18px; }
+    .cs-tag-row { gap: 6px; }
+    .cs-tag { font-size: 10px; }
+    .cs-outcomes { flex-direction: column; gap: 10px; }
+    .cs-out { flex-direction: row; align-items: center; gap: 10px; }
+    .cs-out-num { font-size: 18px; }
+    .outcome-grid { grid-template-columns: 1fr; }
+    .contact-box { padding: 24px 16px; }
+    .about-card ul li { font-size: 13px; }
+    .hero-contact { font-size: 12px; }
+    .skill-card { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">Asmith<span> Reddy</span></a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-tag">Open to Product Manager Roles · New York, NY</div>
+  <h1>Product Manager.<br>I own the <em>outcome,</em><br>not just the output.</h1>
+  <p class="hero-sub">I have led 0-to-1 products from discovery through launch — running the research, making product decisions grounded in data, aligning engineering, and measuring what shipped. Three years of product ownership across enterprise B2B and consumer fintech.</p>
+  <div class="hero-metrics">
+    <div class="metric"><span class="metric-num">85<span>%</span></span><span class="metric-label">Task time reduction · moderated study</span></div>
+    <div class="metric-divider"></div>
+    <div class="metric"><span class="metric-num">+22<span>%</span></span><span class="metric-label">Task completion · usability testing</span></div>
+    <div class="metric-divider"></div>
+    <div class="metric"><span class="metric-num">3</span><span class="metric-label">Products owned end-to-end</span></div>
+    <div class="metric-divider"></div>
+    <div class="metric"><span class="metric-num">12</span><span class="metric-label">Product lines owned · Infosys</span></div>
+  </div>
+  <div class="hero-actions">
+    <a href="#work" class="btn-primary">See My Work</a>
+    <a href="mailto:asmithreddy1701@gmail.com" class="btn-secondary">Contact Me</a>
+  </div>
+  <p class="hero-contact">asmithreddy1701@gmail.com &nbsp;·&nbsp; (201) 492-8344 &nbsp;·&nbsp; <a href="https://linkedin.com/in/asmith-reddy-646690297" target="_blank">LinkedIn</a></p>
+</div>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-label">Case Studies</div>
+  <div class="section-title">Three products. Full ownership.</div>
+  <p class="section-sub">Each one I defined the problem, ran the research, made the product decisions, and drove to a measurable outcome.</p>
+
+  <!-- CASE STUDY 1: WM DASHBOARD (strongest PM story — lead with it) -->
+  <div class="case-study">
+    <div class="cs-header" onclick="toggleCS(this)">
+      <div>
+        <div class="cs-tag-row">
+          <span class="cs-tag tag-blue">Product Transformation</span>
+          <span class="cs-tag tag-dark">Enterprise B2B</span>
+          <span class="cs-tag tag-dark">Wealth Management</span>
+          <span class="cs-tag tag-dark">Infosys</span>
+        </div>
+        <div class="cs-num">Case Study 01</div>
+        <div class="cs-title">WM Dashboard — Wealth Management Platform Redesign</div>
+        <div class="cs-desc">12 stakeholder interviews revealed the real problem — not missing features, but the wrong information hierarchy. Redefined the product architecture, restructured navigation from 9 tabs to 4 workflows. Session time dropped 85% in moderated testing.</div>
+        <div class="cs-outcomes">
+          <div class="cs-out"><span class="cs-out-num">85%</span><span class="cs-out-label">Task time reduction</span></div>
+          <div class="cs-out"><span class="cs-out-num">9→4</span><span class="cs-out-label">Navigation restructure</span></div>
+          <div class="cs-out"><span class="cs-out-num">12</span><span class="cs-out-label">Stakeholder interviews</span></div>
+        </div>
+      </div>
+      <button class="cs-expand-btn">Read Case Study ↓</button>
+    </div>
+    <div class="cs-body">
+      <div class="cs-body-top">
+        <div class="cs-meta-card"><div class="cs-meta-label">My Role</div><div class="cs-meta-value">Product ownership — research, product decisions, IA, dev alignment, QA</div></div>
+        <div class="cs-meta-card"><div class="cs-meta-label">Team</div><div class="cs-meta-value">2 PMs · 8 Engineers · 3 Compliance Officers · 12 Advisor research participants</div></div>
+        <div class="cs-meta-card"><div class="cs-meta-label">Context</div><div class="cs-meta-value">Infosys · Enterprise client · Institutional advisors managing $10M+ portfolios</div></div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-title">The Problem</div>
+        <p>Financial advisors managing $10M+ institutional portfolios spent 40+ minutes per session navigating a 9-tab analytics platform. Risk alerts that required action were buried 4 levels deep. The product had accumulated features without restructuring the information model to match how advisors actually worked.</p>
+        <p>The tempting diagnosis was "too many features, too little UX polish." The correct diagnosis, which only emerged from the research, was different: <strong>the interface was organized around internal product team boundaries, not around the tasks advisors needed to complete in a session.</strong></p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-title">Research & Discovery</div>
+        <p>I ran 12 structured interviews with financial advisors and compliance officers — not surveys, not analytics pulls, actual sessions where I watched people use the product and asked them to narrate their decisions. Three consistent findings emerged that changed my understanding of the problem:</p>
+        <ul class="decision-list">
+          <li>Advisors didn't navigate linearly. They arrived at the platform with a specific task (check a risk alert, review a portfolio, execute a trade), and the 9-tab navigation forced them to remember which tab held which function instead of surfacing the relevant data for the task they had.</li>
+          <li>Risk alerts were the highest-priority action in any session, but they were buried behind two non-obvious navigation steps. Advisors had built workarounds — bookmarks to specific sub-pages — that engineering didn't know about.</li>
+          <li>The information density on the portfolio overview screen was not the problem. Advisors wanted the data; they just wanted it organized by what they needed to act on first, not by data category.</li>
+        </ul>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-title">The Product Decisions</div>
+        <p>The research finding was that information sequence was the problem, not information volume. That reframing changed every subsequent decision.</p>
+        <ul class="decision-list">
+          <li><strong>Restructure from 9 tabs to 4 workflow-based sections</strong> — Dashboard (portfolio overview + live risk alerts), Trade &amp; Orders, Clients &amp; Reports, Settings. Navigation organized around what advisors do, not what the product contains.</li>
+          <li><strong>Promote risk alerts to the primary dashboard surface</strong> — the highest-urgency action in any session needed zero navigation to reach. Surfacing it on load reduced the time-to-action on compliance-critical alerts from minutes to seconds.</li>
+          <li><strong>Preserve information density, restructure hierarchy</strong> — research showed advisors wanted the data; the decision was not to reduce it but to sequence it. Portfolio performance anchored the view; deeper analysis available on demand, not imposed.</li>
+          <li><strong>Design system components extended for the data table and alert patterns</strong> — adopted across 3 other Infosys product teams; the component investment compounded across the organization, not just this product.</li>
+        </ul>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-title">Stakeholder &amp; Engineering Alignment</div>
+        <p>Restructuring navigation from 9 tabs to 4 workflows was not a small ask for a product with 3 compliance officers and 8 engineers already aligned to the existing IA. I presented the research findings with specificity — not "users are confused" but "advisors have built bookmark workarounds for sub-pages because the navigation doesn't match their task model, and here is the session data." When the problem was grounded in what users actually did, the structural change became the obvious solution rather than a design preference.</p>
+        <p>Engineering collaboration continued through build — I reviewed live implementations against intent, flagged inconsistencies before they reached users, and iterated on component behavior until the shipped product matched the research-driven decision. Post-launch design debt was close to zero.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-title">Outcome</div>
+        <div class="outcome-grid">
+          <div class="outcome-card"><div class="num">85%</div><div class="lbl">Session time reduction (40+ min → under 6) · moderated study</div></div>
+          <div class="outcome-card"><div class="num">9→4</div><div class="lbl">Navigation tabs restructured to workflows</div></div>
+          <div class="outcome-card"><div class="num">0</div><div class="lbl">Regression bugs post-launch</div></div>
+          <div class="outcome-card"><div class="num">3</div><div class="lbl">Other product teams adopted design system components</div></div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-title">What I'd Measure Next</div>
+        <p>Time-to-first-action on risk alerts (the highest-priority workflow), navigation path analysis to confirm advisors are using the 4-workflow model rather than building new workarounds, and advisor NPS at 90-day post-launch. If time-to-first-action on risk alerts didn't improve proportionally, I'd investigate whether alert visibility was still the constraint or whether alert notification delivery was the upstream problem.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE STUDY 2: PULSE -->
+  <div class="case-study">
+    <div class="cs-header" onclick="toggleCS(this)">
+      <div>
+        <div class="cs-tag-row">
+          <span class="cs-tag tag-blue">0-to-1 Product</span>
+          <span class="cs-tag tag-dark">Media / Markets</span>
+          <span class="cs-tag tag-green">Live · pulse-asmith.netlify.app</span>
+        </div>
+        <div class="cs-num">Case Study 02</div>
+        <div class="cs-title">PULSE — Discovery & Live Markets Platform</div>
+        <div class="cs-desc">Defined the product from zero, ran a 6-person usability study that killed the first architecture, rebuilt based on data, and shipped. The product decision that mattered was killing what I had built and starting over.</div>
+        <div class="cs-outcomes">
+          <div class="cs-out"><span class="cs-out-num">0→1</span><span class="cs-out-label">Full product launch</span></div>
+          <div class="cs-out"><span class="cs-out-num">6-person</span><span class="cs-out-label">Study killed v1 architecture</span></div>
+          <div class="cs-out"><span class="cs-out-num">React 18</span><span class="cs-out-label">Working prototype shipped</span></div>
+        </div>
+      </div>
+      <button class="cs-expand-btn">Read Case Study ↓</button>
+    </div>
+    <div class="cs-body">
+      <div class="cs-body-top">
+        <div class="cs-meta-card"><div class="cs-meta-label">My Role</div><div class="cs-meta-value">Product ownership — strategy, discovery, architecture decisions, build</div></div>
+        <div class="cs-meta-card"><div class="cs-meta-label">Timeline</div><div class="cs-meta-value">2025 · Ongoing iteration</div></div>
+        <div class="cs-meta-card"><div class="cs-meta-label">Stack</div><div class="cs-meta-value">React 18 · Figma MCP · Claude Code · V0 · GitHub · Netlify</div></div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-title">The Problem I Chose to Solve</div>
+        <p>Finance-curious professionals and heavy news readers used 4–5 separate apps every morning — Bloomberg for market data, BBC for headlines, YouTube for CNBC commentary, a separate stocks app. The content existed. The problem was fragmentation: every context switch cost attention and time. A competitive audit confirmed no product had consolidated live market data, multi-publication editorial news, and live video in one coherent interface.</p>
+        <p>The opportunity was a high-value, underserved user: finance-adjacent professionals priced out of Bloomberg ($24K/year), willing to pay for consolidation, with long daily sessions and strong retention characteristics.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-title">Discovery & Research</div>
+        <p>I audited five products (Bloomberg, Apple News, Yahoo Finance, Feedly, YouTube) to understand why the gap existed and what each had failed to solve. The finding: every product solved one pillar (data, or news, or video) and treated the others as secondary. No one had designed for the user who needed all three in a single working session.</p>
+        <p>I defined three user personas from behavior, not demographics: Finance-Curious Professionals (want market performance + top headlines, no terminal), Heavy News Readers (multi-publication, don't want five subscriptions), and Passive Monitors (live news as ambient background). Marcus, 31, Finance Operations Analyst — 25–35 minutes per morning across four apps — became the anchor persona.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-title">The Product Decision That Changed Everything</div>
+        <p>V1 gave equal visual weight to news, markets, and video — treating the three content pillars as peers. I ran a 6-person informal usability study with colleagues who fit the target persona. The finding was immediate: "It feels like three apps on one screen." No one knew where to start. Equal weight had eliminated the hierarchy the product needed to be usable.</p>
+        <p><strong>I made the call to kill the equal-weight architecture before committing to engineering.</strong> The rebuild established a clear priority stack: markets anchor the top (persistent, always visible), news fills the primary content area, video occupies a smaller secondary panel. That hierarchy was the product decision. Everything else was execution.</p>
+        <ul class="decision-list">
+          <li>Markets pinned top — users who track indices check compulsively; making them navigate to find the S&amp;P would cause churn to a dedicated finance app within a week.</li>
+          <li>Publication-based grouping over algorithm — algorithmic feeds obscure editorial voice; users calibrate trust per topic per publication, and removing that signal reduces comprehension quality.</li>
+          <li>Video sized as secondary panel, not primary — the passive monitoring use case means users run PULSE in the background, not as the primary screen; a fullscreen default would compete with the reading workflow it was meant to support.</li>
+          <li>3-proxy fallback chain for RSS (rss2json → allorigins → corsproxy) — infrastructure decision to guarantee the "never empty" experience promise; one failing proxy silently hands off to the next.</li>
+        </ul>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-title">Outcome</div>
+        <div class="outcome-grid">
+          <div class="outcome-card"><div class="num">0→1</div><div class="lbl">Full product launched and live</div></div>
+          <div class="outcome-card"><div class="num">8</div><div class="lbl">Publishers integrated (BBC, CNN, NYT, NPR, Guardian, Fox, WSJ, ABC)</div></div>
+          <div class="outcome-card"><div class="num">4</div><div class="lbl">Live market indices + 8 individual stocks</div></div>
+          <div class="outcome-card"><div class="num">v2</div><div class="lbl">Iterated from usability data — hierarchy rebuilt, video collapsible</div></div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-title">What I Would Measure Post-Launch</div>
+        <p>DAU, average session length (proxy for passive monitoring use case), 24-hour return rate, and cross-module engagement (users who interact with both news and market data in the same session). Low cross-module engagement would signal the core value proposition — consolidation — is not working, requiring a positioning rethink before any feature work.</p>
+      </div>
+
+      <div class="quote-block">
+        <p>"I didn't realize how much time I was wasting switching between apps until I could see everything in one place. Now I actually read more, not less."</p>
+        <div class="attr">Finance professional · v2 feedback session</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE STUDY 3: CLEARPAY -->
+  <div class="case-study">
+    <div class="cs-header" onclick="toggleCS(this)">
+      <div>
+        <div class="cs-tag-row">
+          <span class="cs-tag tag-blue">Consumer Fintech</span>
+          <span class="cs-tag tag-dark">0-to-1</span>
+          <span class="cs-tag tag-dark">14 Markets</span>
+          <span class="cs-tag tag-green">Live · clearpay-banking-app.netlify.app</span>
+          <span class="cs-tag tag-amber">Concept Prototype · All data fictional</span>
+        </div>
+        <div class="cs-num">Case Study 03</div>
+        <div class="cs-title">ClearPay — Cross-Border Banking & Payments App</div>
+        <div class="cs-desc">Identified an underserved user segment, defined a trust-first product strategy across 14 markets, iterated from v1 through v3 based on research findings. Task completion +22%, onboarding drop-off -31% measured across prototype testing sessions.</div>
+        <div class="cs-outcomes">
+          <div class="cs-out"><span class="cs-out-num">+22%</span><span class="cs-out-label">Task completion rate</span></div>
+          <div class="cs-out"><span class="cs-out-num">-31%</span><span class="cs-out-label">Onboarding drop-off</span></div>
+          <div class="cs-out"><span class="cs-out-num">14</span><span class="cs-out-label">Markets served</span></div>
+        </div>
+      </div>
+      <button class="cs-expand-btn">Read Case Study ↓</button>
+    </div>
+    <div class="cs-body">
+      <div class="cs-body-top">
+        <div class="cs-meta-card"><div class="cs-meta-label">My Role</div><div class="cs-meta-value">Full product responsibility — market research, strategy, all versions v1–v3, deployment</div></div>
+        <div class="cs-meta-card"><div class="cs-meta-label">Timeline</div><div class="cs-meta-value">v1 Jan 2025 · v3 Jun 2026 · Ongoing</div></div>
+        <div class="cs-meta-card"><div class="cs-meta-label">Stack</div><div class="cs-meta-value">React 18 · Framer Motion · Figma · GitHub · Netlify</div></div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-title">Market Opportunity & Strategy</div>
+        <p>Immigrants and international professionals are disproportionately underserved by mainstream banking apps. They rely on 3–4 separate products to cover cross-border transfers, local bill payments, and day-to-day spending — each with its own fees, onboarding friction, and incomplete view of their finances. A competitive audit across Venmo, Wise, Cash App, and Revolut confirmed no single product served this user as a first-class customer.</p>
+        <p>The product strategy: trust-first, cross-border-native, consolidated. Not a feature-level differentiation from Venmo or Wise, but a positioning decision to serve a segment those products treat as an edge case. The addressable market — approximately 47M immigrants in the US (U.S. Census Bureau, 2023), high-income international professionals, students on financial aid from abroad — was both high-value and systematically underserved.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-title">Discovery & Research</div>
+        <p>I interviewed 8 users who send money internationally at least once a month. Core pain points: hidden fees revealed only at the confirmation screen (after the user had committed to the transfer mentally), 7+ steps per core action, and exchange rate displays that required mental math to understand actual cost. I benchmarked Wise (international transfer UX), Venmo (P2P interaction patterns), PhonePe (South Asian immigrant segment), and Zelle (domestic speed, no international support) to identify which patterns to borrow and which gaps required original work.</p>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-title">Key Product Decisions</div>
+        <ul class="decision-list">
+          <li><strong>Trust over speed in the confirmation flow</strong> — original v1 was minimal (one tap to confirm). Testing showed users hesitated even when the steps were simple. The problem was trust, not familiarity. I added a transaction summary step — recipient name, exact amount in their currency, fee — before the final confirm. One extra tap for measurably higher confidence and completion.</li>
+          <li><strong>Fee transparency pulled forward to entry, not confirmation</strong> — users who saw the fee at the end felt deceived even when the fee was reasonable. Moving disclosure to the amount entry screen removed the "hidden fee" perception that was the single biggest trust failure in the research.</li>
+          <li><strong>Home screen stripped to three elements</strong> — first draft surfaced everything (spending, savings, bills, history) on load. Testing showed this paralyzed users with multiple accounts. Stripped to: balance, recent transactions, quick-action shortcuts. Depth on demand, not imposed.</li>
+          <li><strong>v3 driven entirely by competitive audit</strong> — audited Venmo, Cash App, Chime, PhonePe and identified 6 UX gaps the market hadn't addressed: no spending visibility, missing bill reminders, no savings tracking, too many taps for frequent contacts, no financial health overview, poor transaction search. v3 addressed all six in one release cycle.</li>
+        </ul>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-title">Outcome</div>
+        <div class="outcome-grid">
+          <div class="outcome-card"><div class="num">+22%</div><div class="lbl">Task completion rate · moderated usability testing v1→v3</div></div>
+          <div class="outcome-card"><div class="num">-31%</div><div class="lbl">Onboarding drop-off · prototype testing sessions</div></div>
+          <div class="outcome-card"><div class="num">14</div><div class="lbl">Markets with live exchange rates</div></div>
+          <div class="outcome-card"><div class="num">20+</div><div class="lbl">Screens shipped across 3 versions</div></div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-title">What I'd Measure Post-Launch</div>
+        <p>Transfer completion rate, abandonment specifically at the confirmation screen, error rate on international flows, 30-day retention among first-time senders, and average revenue per user across the 14 markets (to understand which markets monetize vs. which are acquisition plays). If confirmation abandonment was still high after the trust redesign, I'd investigate whether the fee amount itself — not the timing of disclosure — was the blocker.</p>
+      </div>
+
+      <div class="quote-block">
+        <p>"For the first time I can actually see what the other person will receive before I confirm. That matters."</p>
+        <div class="attr">Research participant · moderated prototype testing session, v3 confirmation flow redesign</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-label">About</div>
+      <h2>From design to product management.</h2>
+      <p>At Infosys, my responsibilities extended well beyond design. I ran user research, framed product opportunities, defined scope, aligned engineering on priorities, and owned what shipped — from discovery through post-launch measurement. That experience shaped how I think about product work: start with the problem, not the solution; ground decisions in research; measure what matters.</p>
+      <p>That background gives me two things that translate directly into PM work: I can read a spec and know what's hard to build, and I can translate research findings directly into product architecture decisions without losing fidelity in the handoff. I have shipped working React 18 products. I know what engineers are agreeing to when they say "yes."</p>
+      <p>I'm making the transition to Product Management explicit — I want to own the product strategy, roadmap, discovery, stakeholder alignment, and outcomes, and I have three case studies that demonstrate I've been doing that work.</p>
+      <p><strong>M.S. in Computer Science, Pace University — May 2026.</strong> Open to full-time PM roles in New York and remote.</p>
+    </div>
+    <div class="about-side">
+      <div class="about-card">
+        <h4>Experience</h4>
+        <ul>
+          <li>3 years product ownership at Infosys (12 product lines)</li>
+          <li>3 live 0-to-1 products shipped end to end</li>
+          <li>Enterprise B2B · Consumer Fintech · Media &amp; Markets</li>
+          <li>M.S. Computer Science, Pace University — May 2026</li>
+        </ul>
+      </div>
+      <div class="about-card">
+        <h4>Contact</h4>
+        <ul>
+          <li>asmithreddy1701@gmail.com</li>
+          <li>(201) 492-8344</li>
+          <li>New York, NY · Open to Remote</li>
+          <li>linkedin.com/in/asmith-reddy-646690297</li>
+        </ul>
+      </div>
+      <div class="about-card">
+        <h4>Live Products</h4>
+        <ul>
+          <li>pulse-asmith.netlify.app</li>
+          <li>clearpay-banking-app.netlify.app</li>
+          <li>github.com/asmithreddy17</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div class="skills-bg" id="skills">
+  <div class="skills-inner">
+    <div class="section-label">Skills</div>
+    <div class="section-title">How I Work</div>
+    <p class="section-sub" style="margin-bottom: 32px;">Grounded in research, decided with data, executed in partnership with engineering.</p>
+
+    <div class="how-i-work">
+      <div class="hiw-step">
+        <div class="hiw-step-label">Discover</div>
+        <div class="hiw-step-desc">User interviews, usability testing, competitive audits</div>
+      </div>
+      <div class="hiw-step">
+        <div class="hiw-step-label">Define</div>
+        <div class="hiw-step-desc">Problem framing, opportunity sizing, success metrics</div>
+      </div>
+      <div class="hiw-step">
+        <div class="hiw-step-label">Prioritize</div>
+        <div class="hiw-step-desc">Trade-off decisions, MVP scope, roadmap</div>
+      </div>
+      <div class="hiw-step">
+        <div class="hiw-step-label">Align</div>
+        <div class="hiw-step-desc">Stakeholder buy-in, engineering partnership, requirements</div>
+      </div>
+      <div class="hiw-step">
+        <div class="hiw-step-label">Build</div>
+        <div class="hiw-step-desc">Sprint execution, QA, launch readiness</div>
+      </div>
+      <div class="hiw-step">
+        <div class="hiw-step-label">Measure</div>
+        <div class="hiw-step-desc">Post-launch metrics, iteration, next opportunity</div>
+      </div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3><span class="skill-icon">🗺️</span> Product Strategy</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">0-to-1 Product Development</span>
+          <span class="skill-tag">Market Sizing</span>
+          <span class="skill-tag">Competitive Analysis</span>
+          <span class="skill-tag">Opportunity Framing</span>
+          <span class="skill-tag">Go-to-Market Thinking</span>
+          <span class="skill-tag">Product Vision</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3><span class="skill-icon">🔬</span> Discovery & Research</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">User Interviews</span>
+          <span class="skill-tag">Usability Testing</span>
+          <span class="skill-tag">Jobs-to-be-Done</span>
+          <span class="skill-tag">Persona Development</span>
+          <span class="skill-tag">Competitive Audits</span>
+          <span class="skill-tag">Heuristic Evaluation</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3><span class="skill-icon">📊</span> Prioritization & Roadmap</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Scope Definition</span>
+          <span class="skill-tag">MVP Framing</span>
+          <span class="skill-tag">Trade-off Decisions</span>
+          <span class="skill-tag">Feature Prioritization</span>
+          <span class="skill-tag">OKR Thinking</span>
+          <span class="skill-tag">Agile / Scrum</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3><span class="skill-icon">🤝</span> Cross-Functional Leadership</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Stakeholder Alignment</span>
+          <span class="skill-tag">Engineering Partnership</span>
+          <span class="skill-tag">Research Presentation</span>
+          <span class="skill-tag">Decision Rationale</span>
+          <span class="skill-tag">Compliance Alignment</span>
+          <span class="skill-tag">Sprint Reviews</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3><span class="skill-icon">📈</span> Metrics & Outcomes</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Success Metric Definition</span>
+          <span class="skill-tag">Funnel Analysis</span>
+          <span class="skill-tag">Retention Thinking</span>
+          <span class="skill-tag">A/B Testing</span>
+          <span class="skill-tag">Conversion Optimization</span>
+          <span class="skill-tag">Post-Launch Measurement</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3><span class="skill-icon">⚡</span> AI & Technical Fluency</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">LLMs & Prompt Engineering</span>
+          <span class="skill-tag">RAG</span>
+          <span class="skill-tag">AI Agents</span>
+          <span class="skill-tag">Embeddings & Vector Search</span>
+          <span class="skill-tag">Model Evaluation</span>
+          <span class="skill-tag">AI Product Metrics</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">APIs</span>
+          <span class="skill-tag">React 18</span>
+          <span class="skill-tag">GitHub</span>
+          <span class="skill-tag">Claude Code</span>
+          <span class="skill-tag">Rapid Prototyping</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-box">
+    <div class="contact-left">
+      <h2>Looking to own the product end to end.</h2>
+      <p>Open to full-time Product Manager positions in New York and remote. Available immediately.</p>
+      <div class="contact-items">
+        <a class="contact-item" href="mailto:asmithreddy1701@gmail.com">
+          <span class="contact-item-icon">✉️</span>asmithreddy1701@gmail.com
+        </a>
+        <a class="contact-item" href="tel:2014928344">
+          <span class="contact-item-icon">📞</span>(201) 492-8344
+        </a>
+        <a class="contact-item" href="https://linkedin.com/in/asmith-reddy-646690297" target="_blank">
+          <span class="contact-item-icon">in</span>linkedin.com/in/asmith-reddy-646690297
+        </a>
+        <a class="contact-item" href="https://pulse-asmith.netlify.app" target="_blank">
+          <span class="contact-item-icon">🚀</span>Live Product: PULSE
+        </a>
+        <a class="contact-item" href="https://clearpay-banking-app.netlify.app" target="_blank">
+          <span class="contact-item-icon">💳</span>Live Product: ClearPay (concept prototype)
+        </a>
+      </div>
+    </div>
+    <div class="contact-right">
+      <input type="text" placeholder="Your Name">
+      <input type="email" placeholder="Email Address">
+      <input type="text" placeholder="Company / Role">
+      <textarea placeholder="Message"></textarea>
+      <button type="button">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Asmith Reddy Mamilla · Product Manager · New York, NY &nbsp;·&nbsp;
+  <a href="mailto:asmithreddy1701@gmail.com" style="color: var(--blue); text-decoration: none;">asmithreddy1701@gmail.com</a>
+</footer>
+
+<script>
+function toggleCS(header) {
+  const body = header.nextElementSibling;
+  const btn = header.querySelector('.cs-expand-btn');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open');
+  btn.textContent = isOpen ? 'Read Case Study ↓' : 'Close ↑';
+}
+</script>
+
+</body>
+</html>
